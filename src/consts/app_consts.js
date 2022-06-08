@@ -1,3 +1,7 @@
-const PORT = 3000;
+class AppConsts {
+    static appName = "Fla-forum backend";
 
-module.exports.PORT = PORT;
+
+}
+
+module.exports = AppConsts;
