@@ -12,7 +12,7 @@ app.use(express.json());
 
  
 //CALLING ROUTES
-new RoutesExport().callAllRoutes();
+new RoutesExport(app).callAllRoutes();
  
 
 app.listen(process.env.PORT, ()=>{
