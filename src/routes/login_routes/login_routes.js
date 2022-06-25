@@ -19,13 +19,16 @@ router.post("/auth", async (req, res) => {
     }
     
     
-   let hasLogged =  await controller.auth(email,password)
-   if(hasLogged){
-    res.json({"token" : "Token"})
+   let {hasAccount,token} =  await controller.auth(email,password,res)
+
+   if(hasAccount){
+    console.log("caiu aqu8");
+    res.json({"token" : token, "hasAccount" : hasAccount})
     return;
    }
-
-   res.sendStatus(403);
+   
+   res.status(403);
+   res.json({"err" : "Tente novamente, login errado."});
 
 });
 
