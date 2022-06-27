@@ -1,8 +1,6 @@
 const user = require('../../models/sequelize_models/user');
 const jwt = require("jsonwebtoken");
 
-const secret = "HcGjuQrODV";
-
 
 async function findAll() {
     let result = await user.findAll();
@@ -21,25 +19,28 @@ async function auth(email, password, res) {
 
     const hasAccount = mail.length != 0;
 
-    var tokenn;
+
+
 
     if (hasAccount) {
+        console.log("Ha conta");
 
-        jwt.sign({ id: mail["id"], email: mail["email"] }, secret, { expiresIn: "400h", }, function (err, token) {
+        jwt.sign({ id: mail[0]["id"], email: mail[0]["email"] }, process.env.PASS, { expiresIn: "400h", }, function (err, token) {
+            if (err) {
+                res.json({ "err": err });
+            }
 
             if (token) {
-                
+
                 console.log(token);
-                tokenn = token;
+                res.json({ "token": token, "hasAccount": hasAccount });
+                return true;
             }
 
         });
 
-    }
-    console.log(tokenn + "Esse eh o meu token");
-    return {
-        "hasAccount": hasAccount,
-        "token": tokenn
-    };
+
+    } else { res.json({ "err": "erro ao logar" }) }
+
 }
 module.exports = { findAll, auth };

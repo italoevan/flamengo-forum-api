@@ -8,11 +8,13 @@ const app = express();
 app.use(express.urlencoded());
 app.use(express.json());
 
- 
+
+
 //CALLING ROUTES
 new RoutesExport(app).callAllRoutes();
- 
 
-app.listen(process.env.PORT, ()=>{
+
+app.listen(process.env.PORT, () => {
     console.log("Sucess on port: " + process.env.PORT + ", app: " + appConsts.appName);
+   
 });  
