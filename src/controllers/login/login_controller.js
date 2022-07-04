@@ -25,7 +25,7 @@ async function auth(email, password, res) {
     if (hasAccount) {
         console.log("Ha conta");
 
-        jwt.sign({ id: mail[0]["id"], email: mail[0]["email"] }, process.env.PASS, { expiresIn: "400h", }, function (err, token) {
+        jwt.sign({ id: mail[0]["id"], email: mail[0]["email"], role: mail[0]["role"] }, process.env.PASS, { expiresIn: "400h", }, function (err, token) {
             if (err) {
                 res.json({ "err": err });
             }

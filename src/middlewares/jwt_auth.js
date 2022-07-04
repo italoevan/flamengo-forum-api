@@ -16,7 +16,12 @@ function jwtAuth(req,res,next) {
                 res.json({"err" : "Token inválido " + err});
 
             }if(data){
-                
+                req.token = bearer;
+                req.loggedUser = {
+                    email: data["email"],
+                    id : data["id"],
+                    role: data["role"]
+                };
                 next();
             }
         });

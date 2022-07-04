@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../../services/db_connection");
 
 var User = db.define("users", {
-    "id": {
+    "userid": {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -11,6 +11,10 @@ var User = db.define("users", {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    quantityposts : {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
     },
     password: {
         type: DataTypes.STRING,
